@@ -18,24 +18,27 @@ provider "google" {
 }
 
 provider "google-beta" {
-  project = "${local.project}"
-  region  = "${local.region}"
+  project               = "${local.project}"
+  region                = "${local.region}"
   user_project_override = true
   billing_project       = "${local.project}"
 }
 EOF
 }
 
-remote_state {
-  backend = "gcs"
-  config = {
-    bucket = get_env("TG_STATE_BUCKET")
-    key    = "stackfile-poc/${path_relative_to_include()}"
+generate "backend" {
+  path      = "backend.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+terraform {
+  backend "gcs" {
+    bucket   = ${get_env("TG_STATE_BUCKET")}
+    key      = "stackfile-poc/${path_relative_to_include()}"
+    project  = ${get_env("TG_STATE_PROJECT")}
+    location = "us"
   }
-  generate = {
-    path      = "backend.tf"
-    if_exists = "overwrite_terragrunt"
-  }
+}
+EOF
 }
 
 inputs = merge(
