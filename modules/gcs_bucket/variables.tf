@@ -7,7 +7,7 @@ variable "location" {
 }
 
 variable "name_prefix" {
-  default = "hndrewaall-"
+  default = "hndrewaall"
 }
 
 variable "name_suffix" {
