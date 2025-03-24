@@ -3,12 +3,3 @@ stack "common" {
   path                    = "common"
   no_dot_terragrunt_stack = true
 }
-
-unit "extra-bucket" {
-  source = "${get_repo_root()}/units/gcs-bucket"
-  path   = "us/gcs-buckets/extra"
-
-  values = {
-    name_suffix = "extra"
-  }
-}

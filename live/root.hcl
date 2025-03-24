@@ -3,17 +3,8 @@ locals {
   location_vars    = read_terragrunt_config(find_in_parent_folders("location.hcl", "location.hcl"), { inputs = {} })
   region_vars      = read_terragrunt_config(find_in_parent_folders("region.hcl", "region.hcl"), { inputs = {} })
 
-  inputs = merge(
-    local.environment_vars,
-    local.location_vars,
-    local.region_vars,
-  )
-
-  # project_id = local.inputs.project_id
-  # region     = local.inputs.region
-
-  project_id = "dummy"
-  region     = "dummy"
+  project_id = local.environment_vars.project_id
+  region     = local.region_vars.region
 }
 
 generate "provider" {
@@ -49,4 +40,8 @@ terraform {
 EOF
 }
 
-inputs = local.inputs
+inputs = merge(
+  local.environment_vars,
+  local.location_vars,
+  local.region_vars,
+)
