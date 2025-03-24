@@ -1,4 +1,4 @@
 locals {
   environment = "production"
-  project     = get_env("TG_PRODUCTION_GCP_PROJECT")
+  project_id  = get_env("TG_PRODUCTION_GCP_PROJECT")
 }
