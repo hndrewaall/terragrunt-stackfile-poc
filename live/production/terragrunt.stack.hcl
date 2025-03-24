@@ -1,9 +1,11 @@
-unit "bucket" {
-  source                  = "${get_repo_root()}/units/gcs-bucket"
-  path                    = "us/gcs-buckets/main"
-  no_dot_terragrunt_stack = true
+locals {
+  environment = "production"
+  location    = "us"
+  region      = "us-central1"
+  project_id  = get_env("TG_PRODUCTION_GCP_PROJECT")
+}
 
-  values = {
-    name_suffix = "main"
-  }
+stack "common" {
+  source = "${get_repo_root()}/stacks/common"
+  path   = "common"
 }
