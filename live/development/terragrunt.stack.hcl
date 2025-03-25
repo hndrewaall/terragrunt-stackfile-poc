@@ -10,16 +10,18 @@ stack "common" {
   path   = "common"
 
   values = {
-    location = local.location
+    environment = local.environment
+    location    = local.location
   }
 }
 
 unit "extra-bucket" {
   source = "${get_repo_root()}/units/gcs-bucket"
-  path   = "us/gcs-buckets/extra"
+  path   = "${local.location}/gcs-buckets/extra"
 
   values = {
-    location    = local.location
     name_suffix = "extra"
+    environment = local.environment
+    location    = local.location
   }
 }

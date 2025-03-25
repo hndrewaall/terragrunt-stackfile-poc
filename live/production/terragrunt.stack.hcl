@@ -10,6 +10,7 @@ stack "common" {
   path   = "common"
 
   values = {
-    location = local.location
+    environment = local.environment
+    location    = local.location
   }
 }
