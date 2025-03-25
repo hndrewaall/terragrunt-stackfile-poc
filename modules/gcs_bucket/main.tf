@@ -1,6 +1,6 @@
 locals {
   project = trimprefix(var.project_id, "projects/")
-  name    = join("-", [var.name_prefix, var.name_suffix])
+  name    = join("-", [var.name_prefix, var.name_suffix, var.environment])
 }
 
 resource "google_storage_bucket" "bucket" {
