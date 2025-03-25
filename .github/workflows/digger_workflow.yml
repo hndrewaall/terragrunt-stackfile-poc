@@ -19,7 +19,7 @@ jobs:
       with:
         tf_version: 1.11.2
         tg_version: 0.76.7
-        tg_dir: live/
+        tg_dir: project/live/
         tg_command: '--experiment stacks stack generate'
     - name: digger run
       uses: diggerhq/digger@vLatest
