@@ -15,6 +15,6 @@ unit "service_account" {
 
   values = {
     account_id   = "andrew-testing-buckets"
-    display_name = "Andrew Testing (buckets)"
+    display_name = "Andreww Testing (buckets)"
   }
 }
