@@ -1,12 +1,17 @@
 name: Digger
 
 on:
+  pull_request:
+    branches: [ "main" ]
+    types: [ opened, synchronize ]
+  issue_comment:
+    types: [created]
   workflow_dispatch:
-    inputs:
-      spec:
-        required: true
-      run_name:
-        required: false
+    # inputs:
+    #   spec:
+    #     required: true
+    #   run_name:
+    #     required: false
 
 run-name: '${{inputs.run_name}}'
 

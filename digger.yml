@@ -1,3 +1,4 @@
+no-backend: true
 generate_projects:
   blocks:
     - block_name: development
