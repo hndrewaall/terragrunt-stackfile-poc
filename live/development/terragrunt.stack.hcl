@@ -14,7 +14,7 @@ stack "common" {
 
 unit "extra-bucket" {
   source = "${get_repo_root()}/units/gcs-bucket"
-  path   = "us/gcs-buckets/extra"
+  path   = "${local.location}/gcs-buckets/extra"
 
   values = {
     location    = local.location
