@@ -18,15 +18,15 @@ jobs:
       uses: actions/checkout@main
     - name: Generate
       uses: gruntwork-io/terragrunt-action@v2
-      env:
-        TG_DEVELOPMENT_GCP_PROJECT: regrello-app-development
       with:
         tf_version: 1.11.2
         tg_version: 0.76.7
         tg_dir: live/development
         tg_command: '--experiment stacks stack generate'
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+    - name: Chmod
+      run: sudo chown -R runner:docker
+    # - name: Setup tmate session
+    #   uses: mxschmitt/action-tmate@v3
     - name: digger run
       uses: diggerhq/digger@vLatest
       with:
