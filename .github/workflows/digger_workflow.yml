@@ -26,7 +26,7 @@ jobs:
         tg_dir: live/development
         tg_command: '--experiment stacks stack generate'
     - name: Chmod
-      run: sudo chown -R runner:docker
+      run: sudo chown -R runner:docker live/development
     # - name: Setup tmate session
     #   uses: mxschmitt/action-tmate@v3
     - name: digger run
