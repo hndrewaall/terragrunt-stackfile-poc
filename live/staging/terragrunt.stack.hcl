@@ -1,5 +1,5 @@
 locals {
-  stack_vars = read_terragrunt_config(find_in_parent_folders("stack_vars.hcl"))
+  stack_vars = read_terragrunt_config("stack_vars.hcl")
   location   = local.stack_vars.locals.location
 }
 
