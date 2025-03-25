@@ -16,14 +16,14 @@ jobs:
     steps:
     - name: 'Checkout'
       uses: actions/checkout@main
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+    # - name: Setup tmate session
+    #   uses: mxschmitt/action-tmate@v3
     - name: Generate
       uses: gruntwork-io/terragrunt-action@v2
       with:
         tf_version: 1.11.2
         tg_version: 0.76.7
-        tg_dir: project/live/
+        tg_dir: live/
         tg_command: '--experiment stacks stack generate'
     - name: digger run
       uses: diggerhq/digger@vLatest
