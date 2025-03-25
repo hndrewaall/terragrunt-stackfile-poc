@@ -1,8 +1,8 @@
 locals {
-  stack_vars = read_terragrunt_config(find_in_parent_folders("terragrunt.stack.hcl"))
+  stack_vars = read_terragrunt_config(find_in_parent_folders("stack_vars.hcl"))
 
-  project_id = stack_vars.locals.project_id
-  region     = stack_vars.locals.region
+  project_id = local.stack_vars.locals.project_id
+  region     = local.stack_vars.locals.region
 }
 
 generate "provider" {
