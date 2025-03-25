@@ -9,16 +9,24 @@ on:
   workflow_dispatch:
 
 jobs:
+
   plan:
     name: Run digger
     runs-on: ubuntu-latest
     steps:
+    - name: Generate
+      uses: gruntwork-io/terragrunt-action@v2
+      with:
+        # tofu_version: ${{ env.tofu_version }}
+        tg_version: 0.76.7
+        tg_dir: live/
+        tg_command: '--experiment stacks stack generate'
     - name: digger run
       uses: diggerhq/digger@vLatest
       with:
         disable-locking: true
         setup-terraform: true
-        setup-terragrunt: true
+        setup-terragrunt: false
         terragrunt-version: 0.76.7
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
