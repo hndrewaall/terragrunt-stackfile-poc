@@ -11,6 +11,5 @@ workflows:
   default:
     plan:
       steps:
-        - run: terragrunt --experiment stacks stack generate | tee -a $DIGGER_OUT
         - init
         - plan
