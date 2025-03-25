@@ -1,7 +1,6 @@
 unit "bucket" {
-  source                  = "${get_repo_root()}/modules/gcs_bucket"
-  path                    = "us/gcs-buckets/main"
-  no_dot_terragrunt_stack = true
+  source = "${get_repo_root()}/units/gcs-bucket"
+  path   = "${values.location}/gcs-buckets/main"
 
   values = {
     name_suffix = "main"
