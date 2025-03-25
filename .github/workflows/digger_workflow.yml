@@ -20,6 +20,8 @@ jobs:
     #   uses: mxschmitt/action-tmate@v3
     - name: Generate
       uses: gruntwork-io/terragrunt-action@v2
+      env:
+        TG_DEVELOPMENT_GCP_PROJECT: regrello-app-development
       with:
         tf_version: 1.11.2
         tg_version: 0.76.7
