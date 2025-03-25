@@ -1,6 +1,7 @@
 locals {
-  stack_vars = read_terragrunt_config("stack_vars.hcl")
-  location   = local.stack_vars.locals.location
+  stack_vars  = read_terragrunt_config("stack_vars.hcl")
+  environment = local.stack_vars.locals.environment
+  location    = local.stack_vars.locals.location
 }
 
 stack "common" {
@@ -8,7 +9,8 @@ stack "common" {
   path   = "common"
 
   values = {
-    location = local.location
+    environment = local.environment
+    location    = local.location
   }
 }
 
@@ -17,7 +19,8 @@ unit "extra-bucket" {
   path   = "${local.location}/gcs-buckets/extra"
 
   values = {
-    location    = local.location
     name_suffix = "extra"
+    environment = local.environment
+    location    = local.location
   }
 }

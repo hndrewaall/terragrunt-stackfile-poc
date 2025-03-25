@@ -4,5 +4,7 @@ unit "bucket" {
 
   values = {
     name_suffix = "main"
+    environment = values.environment
+    location    = values.location
   }
 }

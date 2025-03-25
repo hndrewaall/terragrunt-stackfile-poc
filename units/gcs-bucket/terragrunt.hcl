@@ -8,4 +8,6 @@ terraform {
 
 inputs = {
   name_suffix = values.name_suffix
+  environment = values.environment
+  location    = values.location
 }
