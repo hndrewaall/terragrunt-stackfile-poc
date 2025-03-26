@@ -11,6 +11,3 @@ workflows:
     plan:
       steps:
         - plan:
-          extra_args:
-            - --experiment
-            - stacks
