@@ -3,7 +3,7 @@ generate_projects:
     - block_name: development
       terragrunt: true
       include: "live/development/**"
-      # root_dir: "live/development/"
+      root_dir: "live/"
       workflow: default
       workflow_file: digger_workflow.yml
 
