@@ -45,7 +45,7 @@ jobs:
       with:
         version: '>= 390.0.0'
     - name: digger run
-      uses: diggerhq/digger@vLatest
+      uses: hndrewaall/digger@stacks-support
       continue-on-error: true
       with:
         # no-backend: true
