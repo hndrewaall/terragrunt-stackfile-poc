@@ -11,5 +11,4 @@ workflows:
   default:
     plan:
       steps:
-        - run: "pwd"
-        - plan:
+        - plan
