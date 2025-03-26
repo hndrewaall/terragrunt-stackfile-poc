@@ -10,5 +10,9 @@ workflows:
   default:
     plan:
       steps:
-        - init
-        - plan
+        - plan:
+          extra_args:
+            - --experiment
+            - stacks
+            - stack
+            - run
