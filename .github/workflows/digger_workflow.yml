@@ -42,7 +42,7 @@ jobs:
         no-backend: true
         disable-locking: true
         setup-terraform: true
-        setup-terragrunt: false
+        setup-terragrunt: true
         terragrunt-version: 0.76.7
       env:
         TG_DEVELOPMENT_GCP_PROJECT: ${{ secrets.TG_DEVELOPMENT_GCP_PROJECT }}
