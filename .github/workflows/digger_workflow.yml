@@ -57,4 +57,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
-      if: always()
+      # if: always()
