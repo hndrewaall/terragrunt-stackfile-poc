@@ -42,8 +42,6 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v2'
       with:
         version: '>= 390.0.0'
-    # - name: Setup tmate session
-    #   uses: mxschmitt/action-tmate@v3
     - name: digger run
       uses: diggerhq/digger@vLatest
       with:
@@ -57,3 +55,5 @@ jobs:
         TG_STATE_BUCKET: ${{ secrets.TG_STATE_BUCKET }}
         GITHUB_CONTEXT: ${{ toJson(github) }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
