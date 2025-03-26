@@ -1,14 +1,12 @@
 name: Digger
 
 on:
+  pull_request:
+    branches: [ "main" ]
+    types: [ opened, synchronize ]
+  issue_comment:
+    types: [created]
   workflow_dispatch:
-    inputs:
-      spec:
-        required: true
-      run_name:
-        required: false
-
-run-name: '${{inputs.run_name}}'
 
 jobs:
 
@@ -48,7 +46,7 @@ jobs:
       uses: hndrewaall/digger@stacks-support
       continue-on-error: true
       with:
-        # no-backend: true
+        no-backend: true
         disable-locking: true
         setup-terraform: true
         setup-terragrunt: true
