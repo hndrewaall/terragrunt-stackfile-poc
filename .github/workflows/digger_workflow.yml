@@ -51,6 +51,7 @@ jobs:
         setup-terraform: true
         setup-terragrunt: true
         terragrunt-version: 0.76.7
+        reporting-strategy: multiple_comments
       env:
         TG_DEVELOPMENT_GCP_PROJECT: ${{ secrets.TG_DEVELOPMENT_GCP_PROJECT }}
         TG_STATE_BUCKET: ${{ secrets.TG_STATE_BUCKET }}
