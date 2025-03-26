@@ -38,4 +38,5 @@ terraform {
 EOF
 }
 
+
 inputs = local.stack_vars.locals
