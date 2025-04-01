@@ -1,0 +1,4 @@
+projects:
+  - name: development
+    dir: live/development
+    terragrunt: true
