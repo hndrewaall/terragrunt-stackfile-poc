@@ -9,9 +9,9 @@ terraform {
 dependency "iam_svc_account" {
   config_path = "../../iam-svc-accounts/main"
 
-  mock_outputs_allowed_terraform_commands = ["validate"]
+  # mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
-    email = "hndrewaall@gmail.com"
+    email = "serviceAccount:hndrewaall@gmail.com"
   }
 }
 
@@ -20,7 +20,5 @@ inputs = {
   name_suffix = values.name_suffix
   environment = values.environment
   location    = values.location
-  readers = [
-    dependency.iam_svc_account.outputs.email
-  ]
+  reader      = dependency.iam_svc_account.outputs.email
 }
