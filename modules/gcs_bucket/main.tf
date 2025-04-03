@@ -18,7 +18,7 @@ resource "google_storage_bucket" "bucket" {
 resource "google_storage_bucket_iam_binding" "readers" {
   bucket  = google_storage_bucket.bucket.name
   role    = "roles/storage.objectViewer"
-  members = var.readers
+  members = [var.reader]
 }
 
 resource "google_storage_bucket_iam_binding" "writers" {

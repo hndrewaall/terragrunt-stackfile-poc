@@ -26,9 +26,8 @@ variable "versioning_enabled" {
   default = true
 }
 
-variable "readers" {
-  type    = list(string)
-  default = []
+variable "reader" {
+  type = string
 }
 
 variable "writers" {

@@ -1,7 +1,8 @@
 locals {
-  stack_vars  = read_terragrunt_config("stack_vars.hcl")
-  environment = local.stack_vars.locals.environment
-  location    = local.stack_vars.locals.location
+  environment = "production"
+  location    = "us"
+  region      = "us-central1"
+  project_id  = get_env("TG_PRODUCTION_GCP_PROJECT")
 }
 
 stack "common" {
