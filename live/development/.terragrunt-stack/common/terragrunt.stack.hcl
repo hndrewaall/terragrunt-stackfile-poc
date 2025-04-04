@@ -1,7 +1,3 @@
-locals {
-  values = values
-}
-
 unit "bucket" {
   source = "${get_repo_root()}/units/gcs-bucket"
   path   = "${values.location}/gcs-buckets/main"
