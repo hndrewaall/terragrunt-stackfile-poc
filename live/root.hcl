@@ -1,7 +1,10 @@
 locals {
-  stack_vars = read_terragrunt_config(find_in_parent_folders("terragrunt.stack.hcl"))
-  project_id = local.stack_vars.local.values.project_id
-  region     = local.stack_vars.local.values.region
+  # Pull out shared vars from stackfiles, accounting for both nested and non nested cases
+  stack_vars  = read_terragrunt_config(find_in_parent_folders("terragrunt.stack.hcl"))
+  shared_vars = try(local.stack_vars.local.values, local.stack_vars.local)
+
+  project_id = local.shared_vars.project_id
+  region     = local.shared_vars.region
 }
 
 generate "provider" {
@@ -37,4 +40,4 @@ terraform {
 EOF
 }
 
-inputs = local.stack_vars.local.values
+inputs = local.shared_vars

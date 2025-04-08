@@ -11,3 +11,13 @@ stack "common" {
 
   values = local
 }
+
+unit "extra_service_account" {
+  source = "${get_repo_root()}/units/iam-svc-account"
+  path   = "${local.location}/iam-svc-accounts/extra"
+
+  values = {
+    account_id   = "andrew-testing-extra"
+    display_name = "Andrew Testing (extra)"
+  }
+}
