@@ -15,7 +15,7 @@ unit "bucket" {
 
 unit "service_account" {
   source = "${get_repo_root()}/units/iam-svc-account"
-  path   = "${values.location}/iam-svc-accounts/main"
+  path   = "global/iam-svc-accounts/main"
 
   values = {
     account_id   = "andrew-testing-buckets"
