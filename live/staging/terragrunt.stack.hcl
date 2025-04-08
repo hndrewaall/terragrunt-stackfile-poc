@@ -9,8 +9,5 @@ stack "common" {
   source = "${get_repo_root()}/stacks/common"
   path   = "common"
 
-  values = {
-    environment = local.environment
-    location    = local.location
-  }
+  values = local
 }
