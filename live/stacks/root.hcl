@@ -34,7 +34,7 @@ generate "backend" {
 terraform {
   backend "gcs" {
     bucket = "${get_env("TG_STATE_BUCKET")}"
-    prefix = "stackfile-poc/${path_relative_to_include()}"
+    prefix = "stackfile-poc/stacks/${path_relative_to_include()}"
   }
 }
 EOF

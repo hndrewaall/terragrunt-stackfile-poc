@@ -14,7 +14,7 @@ stack "common" {
 
 unit "extra_service_account" {
   source = "${get_repo_root()}/units/iam-svc-account"
-  path   = "${local.location}/iam-svc-accounts/extra"
+  path   = "iam-svc-accounts/extra"
 
   values = {
     account_id   = "andrew-testing-extra"

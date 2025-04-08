@@ -4,7 +4,7 @@ locals {
 
 unit "bucket" {
   source = "${get_repo_root()}/units/gcs-bucket"
-  path   = "${values.location}/gcs-buckets/main"
+  path   = "gcs-buckets/main"
 
   values = {
     name_suffix = "main"
@@ -15,7 +15,7 @@ unit "bucket" {
 
 unit "service_account" {
   source = "${get_repo_root()}/units/iam-svc-account"
-  path   = "global/iam-svc-accounts/main"
+  path   = "iam-svc-accounts/main"
 
   values = {
     account_id   = "andrew-testing-buckets"

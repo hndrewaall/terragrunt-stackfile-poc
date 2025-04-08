@@ -7,7 +7,7 @@ terraform {
 }
 
 dependency "iam_svc_account" {
-  config_path = "../../../global/iam-svc-accounts/main"
+  config_path = "../../iam-svc-accounts/main"
 
   # mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
@@ -17,7 +17,5 @@ dependency "iam_svc_account" {
 
 inputs = {
   name_suffix = values.name_suffix
-  environment = values.environment
-  location    = values.location
   reader      = dependency.iam_svc_account.outputs.email
 }
