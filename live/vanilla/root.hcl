@@ -5,10 +5,10 @@ locals {
   region_vars      = read_terragrunt_config(find_in_parent_folders("region.hcl"))
 
   shared_vars = {
-    environment = local.environment_vars.local.environment
-    project_id  = local.project_vars.local.project_id
-    location    = local.location_vars.local.location
-    region      = local.region_vars.local.region
+    environment = local.environment_vars.locals.environment
+    project_id  = local.project_vars.locals.project_id
+    location    = local.location_vars.locals.location
+    region      = local.region_vars.locals.region
   }
 
   project_id = local.shared_vars.project_id
