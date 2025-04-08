@@ -1,2 +1,5 @@
 **/.terragrunt-cache
-**/.terragrunt-stack
+**/.terragrunt-stack/**/.terragrunt-stack-manifest
+**/.terragrunt-stack/**/terragrunt.hcl
+**/.terragrunt-stack/**/terragrunt.values.hcl
+**/.terragrunt-stack/**/terragrunt.stack.hcl
