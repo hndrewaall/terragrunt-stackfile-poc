@@ -11,8 +11,9 @@ on:
 run-name: '${{inputs.run_name}}'
 
 jobs:
-  digger-job:
-    name: Digger
+
+  plan:
+    name: Run digger
     runs-on: ubuntu-latest
     permissions:
       contents: write      # required to merge PRs
@@ -22,24 +23,45 @@ jobs:
       issues: read         # required to check if PR number is an issue or not
       statuses: write      # required to validate combined PR status
     steps:
-    - uses: actions/checkout@v4
-    - name: ${{ fromJSON(github.event.inputs.spec).job_id }}
-      run: echo "job id ${{ fromJSON(github.event.inputs.spec).job_id }}"
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-        create_credentials_file: true
-    - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v1'
-    - name: 'Use gcloud CLI'
-      run: 'gcloud info'
-    - name: digger run
-      uses: diggerhq/digger@vLatest
-      with:
-        digger-spec: ${{ inputs.spec }}
-        setup-aws: false
-        setup-terraform: true
+    - name: 'Checkout'
+      uses: actions/checkout@main
+    - name: Generate
+      uses: gruntwork-io/terragrunt-action@v2
       env:
+        TG_DEVELOPMENT_GCP_PROJECT: ${{ secrets.TG_DEVELOPMENT_GCP_PROJECT }}
+      with:
+        tf_version: 1.11.2
+        tg_version: 0.76.7
+        tg_dir: live/development
+        tg_command: '--experiment stacks stack generate'
+    - name: Chmod
+      run: sudo chown -R runner:docker live/development
+    - uses: 'google-github-actions/auth@v2'
+      with:
+        project_id: ${{ secrets.TG_DEVELOPMENT_GCP_PROJECT }}
+        credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v2'
+      with:
+        version: '>= 390.0.0'
+    - name: digger run
+      uses: hndrewaall/digger@stacks-support
+      continue-on-error: true
+      with:
+        # no-backend: true
+        disable-locking: true
+        setup-terraform: true
+        setup-terragrunt: true
+        terragrunt-version: 0.76.7
+      env:
+        TG_DEVELOPMENT_GCP_PROJECT: ${{ secrets.TG_DEVELOPMENT_GCP_PROJECT }}
+        TG_STATE_BUCKET: ${{ secrets.TG_STATE_BUCKET }}
         GITHUB_CONTEXT: ${{ toJson(github) }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Setup tmate session
+    #   uses: mxschmitt/action-tmate@v3
+    #   env:
+    #     TG_DEVELOPMENT_GCP_PROJECT: ${{ secrets.TG_DEVELOPMENT_GCP_PROJECT }}
+    #     TG_STATE_BUCKET: ${{ secrets.TG_STATE_BUCKET }}
+    #     GITHUB_CONTEXT: ${{ toJson(github) }}
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
