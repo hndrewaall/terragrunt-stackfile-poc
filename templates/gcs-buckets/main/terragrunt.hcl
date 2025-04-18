@@ -1,7 +1,3 @@
-include "root" {
-  path = find_in_parent_folders("root.hcl")
-}
-
 terraform {
   source = "${get_repo_root()}/modules/gcs_bucket"
 }
@@ -16,6 +12,6 @@ dependency "iam_svc_account" {
 }
 
 inputs = {
-  name_suffix = values.name_suffix
+  name_suffix = "main"
   reader      = dependency.iam_svc_account.outputs.email
 }
